@@ -31,17 +31,18 @@ export interface Category extends JsonLd {
   id: number
   name: string
   slug: string
-  description: string | null
+  description?: string | null
 }
 
 export interface Article extends JsonLd {
   id: number
   title: string
   slug: string
-  summary: string | null
+  /** Absent de la réponse quand il est vide (API Platform omet les valeurs null) */
+  summary?: string | null
   content: string
-  /** null = brouillon */
-  publishedAt: string | null
+  /** Brouillon : null ou absent de la réponse (API Platform omet les valeurs null) */
+  publishedAt?: string | null
   createdAt: string
   /** IRI de la catégorie */
   category: Iri

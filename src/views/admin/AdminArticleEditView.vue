@@ -43,9 +43,10 @@ onMounted(async () => {
         category: a.category,
         summary: a.summary ?? '',
         content: a.content,
-        published: a.publishedAt !== null,
+        // Brouillon : publishedAt vaut null ou est absent de la réponse de l'API.
+        published: a.publishedAt != null,
       })
-      originalPublishedAt.value = a.publishedAt
+      originalPublishedAt.value = a.publishedAt ?? null
       slugTouched.value = true
     }
     state.value = 'ready'
@@ -84,7 +85,7 @@ async function save() {
   try {
     if (props.id) {
       const a = await articles.update(Number(props.id), input)
-      originalPublishedAt.value = a.publishedAt
+      originalPublishedAt.value = a.publishedAt ?? null
       saved.value = form.published ? 'Changes saved. The article is published.' : 'Changes saved as a draft.'
     } else {
       const a = await articles.create(input)
