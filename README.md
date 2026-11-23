@@ -23,10 +23,12 @@ Configuration : copier `.env.example` en `.env.local` et adapter.
 |---|---|---|
 | `VITE_API_PROXY_TARGET` | `http://localhost:8090` | adresse de l'API pour le proxy de dev |
 | `VITE_API_BASE_URL` | `/api` | préfixe des appels API |
-| `VITE_COMMUNITY_BACKEND` | `local` | `api` quand `/api/community_posts` existera |
-| `VITE_SUPPORT_BACKEND` | `local` | `api` quand `/api/support_requests` existera |
+| `VITE_COMMUNITY_BACKEND` | `api` | `local` : journal stocké dans le navigateur (démo sans back) |
+| `VITE_SUPPORT_BACKEND` | `api` | `local` : demandes d'aide stockées dans le navigateur |
 
-En mode `local`, le journal et les demandes d'aide sont stockés dans le navigateur : pratique pour développer et faire une démo, mais rien n'est partagé entre visiteurs.
+En mode `local`, le journal et les demandes d'aide sont stockés dans le navigateur : pratique pour une démo sans back, mais rien n'est partagé entre visiteurs.
+
+Le guide de l'API (lancement, compte admin, routes) est fourni par l'équipe back : `API.md`.
 
 ## Commandes
 

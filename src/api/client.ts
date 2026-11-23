@@ -116,6 +116,15 @@ export async function request<T>(method: Method, path: string, options: RequestO
   return (await response.json()) as T
 }
 
+/**
+ * Messages lisibles pour les codes dont le corps n'est pas exploitable
+ * (413 : page HTML du serveur web ; 429 : limite de débit de l'API, voir API.md § 10).
+ */
+const FRIENDLY_MESSAGES: Record<number, string> = {
+  413: 'The photo must be 5 MB or less.',
+  429: 'Too many attempts. Please wait a little and try again.',
+}
+
 async function toApiError(response: Response): Promise<ApiError> {
   let data: Record<string, unknown> = {}
   try {
@@ -124,6 +133,7 @@ async function toApiError(response: Response): Promise<ApiError> {
     // corps vide ou non JSON
   }
   const message =
+    FRIENDLY_MESSAGES[response.status] ??
     (data.detail as string | undefined) ??
     (data.message as string | undefined) ?? // erreurs Lexik JWT
     (data.description as string | undefined) ??

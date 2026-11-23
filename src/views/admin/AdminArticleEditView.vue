@@ -175,6 +175,9 @@ async function save() {
       ></textarea>
 
       <label for="content">Article text</label>
+      <p id="content-hint" class="field-hint">
+        Leave an empty line between paragraphs. Start a line with “## ” to add a section heading.
+      </p>
       <p v-if="errorFor(errors, 'content')" id="content-error" class="field-error">
         {{ errorFor(errors, 'content') }}
       </p>
@@ -184,12 +187,12 @@ async function save() {
         name="content"
         required
         :aria-invalid="!!errorFor(errors, 'content')"
-        :aria-describedby="describedBy(errors, 'content')"
+        :aria-describedby="describedBy(errors, 'content', 'content-hint')"
       ></textarea>
 
       <label class="check-row" for="published">
         <input id="published" v-model="form.published" type="checkbox" name="published" />
-        Published (visible to everyone)
+        Published (visible to everyone in News)
       </label>
 
       <button class="primary" type="submit" :disabled="busy">

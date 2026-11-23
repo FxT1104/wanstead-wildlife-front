@@ -78,6 +78,10 @@ async function remove(article: Article) {
             Edit<span class="sr-only"> “{{ a.title }}”</span>
           </RouterLink>
           {{ ' ' }}
+          <RouterLink :to="{ name: 'news-article', params: { id: a.id, slug: a.slug } }">
+            {{ a.publishedAt ? 'View' : 'Preview' }}<span class="sr-only"> “{{ a.title }}”</span>
+          </RouterLink>
+          {{ ' ' }}
           <template v-if="confirmingId === a.id">
             <span>Delete permanently?</span>
             <button class="danger-button" type="button" @click="remove(a)">

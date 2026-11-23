@@ -66,8 +66,12 @@ export function validateSupport(input: SupportInput): SummaryError[] {
   return errors
 }
 
-/** Référence courte lisible, communiquée au visiteur */
-export const reference = (id: string) => id.slice(0, 8).toUpperCase()
+/**
+ * Référence courte lisible, communiquée au visiteur.
+ * L'API génère des UUID v7 : leur début est l'heure de création (identique pour deux demandes proches),
+ * leur fin est aléatoire. On prend donc les 8 derniers caractères.
+ */
+export const reference = (id: string) => id.replace(/-/g, '').slice(-8).toUpperCase()
 
 export interface SupportService {
   create(input: SupportInput): Promise<SupportRequest>
@@ -145,9 +149,9 @@ export const localSupportService: SupportService = {
   },
 }
 
-/** VITE_SUPPORT_BACKEND=api pour utiliser /api/support_requests */
+/** Par défaut : l'API (/api/support_requests). VITE_SUPPORT_BACKEND=local : stockage dans le navigateur (démo sans back, tests). */
 export const supportService: SupportService =
-  import.meta.env.VITE_SUPPORT_BACKEND === 'api' ? apiSupportService : localSupportService
+  import.meta.env.VITE_SUPPORT_BACKEND === 'local' ? localSupportService : apiSupportService
 
 // --- Suivi côté visiteur : on garde les ids des demandes envoyées depuis ce navigateur ---
 

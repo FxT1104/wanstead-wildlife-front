@@ -6,7 +6,7 @@
 /** Mots-clés → illustration (public/assets/groups/<slug>.webp). Le premier groupe trouvé gagne. */
 const TOPICS: [RegExp, string][] = [
   [/\b(moths?|butterfl\w*|insects?|bees?|honey|wasps?|beetles?|dragonfl\w*|damselfl\w*|hoverfl\w*|bugs?|crickets?|grasshoppers?|invertebrates?)\b/i, 'insects'],
-  [/\b(birds?|skylarks?|larks?|herons?|gulls?|owls?|robins?|ducks?|swans?|geese|goose|warblers?|finch\w*|wheatears?|kingfishers?|woodpeckers?|birding|nest\w*)\b/i, 'birds'],
+  [/\b(birds?|skylarks?|larks?|herons?|gulls?|owls?|robins?|ducks?|swans?|geese|goose|warblers?|finch\w*|wheatears?|kingfishers?|woodpeckers?|thrush(es)?|redwings?|fieldfares?|birding|nest\w*)\b/i, 'birds'],
   [/\b(fungi|fungus|mushrooms?|toadstools?)\b/i, 'fungi'],
   [/\b(mammals?|fox\w*|deer|bats?|mink|voles?|mice|mouse|otters?|hedgehogs?|squirrels?|badgers?|rats?|shrews?)\b/i, 'mammals'],
   [/\b(spiders?)\b/i, 'spiders'],

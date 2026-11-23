@@ -35,7 +35,10 @@ async function submit() {
     await router.replace(safeRedirect())
   } catch (error) {
     form.password = ''
-    if (error instanceof ApiError && error.status === 401) {
+    if (error instanceof ApiError && error.status === 401 && /too many/i.test(error.message)) {
+      // Blocage temporaire après 5 échecs en 1 minute (API.md § 5) : le dire clairement.
+      message.value = 'Too many failed sign-in attempts. Please wait one minute and try again.'
+    } else if (error instanceof ApiError && error.status === 401) {
       // Message volontairement vague : ne pas révéler si l'email existe.
       message.value = 'The email address or password is incorrect.'
     } else {

@@ -53,3 +53,13 @@ describe('validateSupport', () => {
   })
 })
 
+
+describe('reference', () => {
+  it('uses the random end of a UUID v7, not its time-based start', async () => {
+    const { reference } = await import('./support/support')
+    const a = reference('01a208a4-7219-7f7f-b482-735e7ab1f3c4')
+    const b = reference('01a208a4-7219-7f80-9c11-0d2f44e8aa07')
+    expect(a).toBe('7AB1F3C4')
+    expect(a).not.toBe(b)
+  })
+})

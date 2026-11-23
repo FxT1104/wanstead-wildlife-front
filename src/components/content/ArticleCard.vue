@@ -15,6 +15,8 @@ const props = defineProps<{
   to: RouteLocationRaw
   /** Niveau du titre selon la page (h2 dans une liste sous le h1) */
   headingLevel?: 2 | 3
+  /** Petite ligne au-dessus du titre (ex. « New · 23 November 2026 ») */
+  kicker?: string
 }>()
 
 // Photo introuvable sur l'ancien site : on bascule sur l'illustration du sujet.
@@ -29,6 +31,7 @@ const cover = computed(() => coverFor({ ...props, image: broken.value ? null : p
       <img :src="cover.src" alt="" loading="lazy" decoding="async" @error="broken = true" />
     </div>
     <div class="article-card-body">
+      <p v-if="kicker" class="article-card-kicker">{{ kicker }}</p>
       <component :is="headingLevel === 3 ? 'h3' : 'h2'" class="article-card-title">
         <RouterLink :to="to">{{ title }}</RouterLink>
       </component>

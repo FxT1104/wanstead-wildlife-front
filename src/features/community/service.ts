@@ -163,8 +163,8 @@ export const localCommunityService: CommunityService = {
 export const isExamplePost = (id: string) => EXAMPLES.some((e) => e.id === id)
 
 /**
- * Tant que l'endpoint /api/community_posts n'existe pas côté Symfony, le mode "local" permet de travailler.
- * VITE_COMMUNITY_BACKEND=api pour brancher la vraie API.
+ * Par défaut : l'API (/api/community_posts). VITE_COMMUNITY_BACKEND=local garde les notes dans le navigateur
+ * (démo sans back, tests).
  */
 export const communityService: CommunityService =
-  import.meta.env.VITE_COMMUNITY_BACKEND === 'api' ? apiCommunityService : localCommunityService
+  import.meta.env.VITE_COMMUNITY_BACKEND === 'local' ? localCommunityService : apiCommunityService

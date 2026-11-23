@@ -144,6 +144,13 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('@/views/news/NewsView.vue'),
     meta: { title: 'News', bodyClass: 'editorial-support' },
   },
+  {
+    path: '/news/:id(\\d+)/:slug?',
+    name: 'news-article',
+    component: () => import('@/views/news/NewsArticleView.vue'),
+    props: (to) => ({ id: Number(to.params.id) }),
+    meta: { title: 'News', bodyClass: 'editorial-support' },
+  },
   // --- Archive : toutes les pages migrées du site actuel ----------------------
   {
     path: '/archive',
@@ -202,7 +209,7 @@ export const routes: RouteRecordRaw[] = [
         meta: { title: 'Write an article · Administration' },
       },
       {
-        path: 'articles/:id(\d+)',
+        path: 'articles/:id(\\d+)',
         name: 'admin-article-edit',
         component: () => import('@/views/admin/AdminArticleEditView.vue'),
         props: true,
