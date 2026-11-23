@@ -1,0 +1,39 @@
+{
+  "name": "wanstead-wildlife-front",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "type-check": "vue-tsc -b",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "migrate:crawl": "node scripts/migration/crawl.ts",
+    "migrate:build": "node scripts/migration/build.ts"
+  },
+  "dependencies": {
+    "vue": "^3.5.44",
+    "vue-router": "^5.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "@vue/eslint-config-typescript": "^14.9.0",
+    "@vue/test-utils": "^2.6.0",
+    "@vue/tsconfig": "^0.9.1",
+    "eslint": "^10.15.0",
+    "eslint-plugin-vue": "^10.12.1",
+    "eslint-plugin-vuejs-accessibility": "^2.6.3",
+    "jiti": "^2.7.0",
+    "jsdom": "^31.0.1",
+    "node-html-parser": "^9.0.7",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.73.0",
+    "vite": "^8.3.6",
+    "vitest": "^5.1.1",
+    "vue-tsc": "^3.3.14"
+  }
+}

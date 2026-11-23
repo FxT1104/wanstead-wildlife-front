@@ -1,0 +1,22 @@
+/*
+ * Feuilles de style reprises telles quelles du prototype (Wanstead-Wildlife/public).
+ * Elles seront progressivement remplacées par la charte graphique validée
+ * et découpées par composant.
+ */
+@import './prototype/style.css';
+@import './prototype/project.css';
+@import './prototype/edition.css';
+@import './prototype/fieldbook.css';
+@import './community.css';
+@import './content.css';
+@import './fixes.css';
+
+/* #app ne doit pas casser la mise en page pensée pour header/main/footer enfants de body */
+#app {
+  display: contents;
+}
+
+/* Le focus programmatique sur <main> (changement de route) ne doit pas afficher de contour */
+#main:focus:not(:focus-visible) {
+  outline: none;
+}

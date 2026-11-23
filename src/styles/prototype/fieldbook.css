@@ -1,0 +1,41 @@
+.wildlife-book{--cover:#f3efdf;--forest:#233f31;--rust:#90472c;background:var(--cover)}
+.wildlife-book main{max-width:1800px;margin:auto;min-height:0;padding:0 0 24px}
+.book-cover{isolation:isolate;display:grid;align-items:center;position:relative;min-height:clamp(600px,76vh,870px);background:var(--cover);border:0}
+.book-art{position:absolute;z-index:-2;inset:0 0 0 22%;background:url('/assets/wanstead-fieldbook.webp') center 56%/cover no-repeat;mask-image:linear-gradient(90deg,transparent,#000 22%)}
+.book-cover::before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,var(--cover) 7%,rgba(243,239,223,.96) 23%,rgba(243,239,223,.83) 33%,transparent 53%)}
+.book-copy{padding:52px 0 65px;margin-left:5%;width:min(43%,610px)}
+.book-path{font-size:.94rem;color:#42513e;display:flex;gap:12px;align-items:center}
+.book-path a{text-decoration:underline;text-underline-offset:4px}
+.book-copy h1{font:normal clamp(5rem,7.9vw,9rem)/.91 Georgia,serif;letter-spacing:-.064em;margin:34px 0 38px;color:var(--forest)}
+.book-copy h1 em{color:#4d623c;font-weight:400}
+.book-finder{width:min(100%,385px)}
+.book-finder summary{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:15px 22px;background:var(--forest);color:white;border-radius:4px 24px 24px 4px;width:fit-content;min-height:52px;cursor:pointer;font-size:1.04rem}
+.book-finder summary::-webkit-details-marker{display:none}
+.book-finder summary span{width:10px;height:10px;border:solid currentColor;border-width:0 1.8px 1.8px 0;transform:translateY(-2px) rotate(45deg)}
+.book-finder[open] summary span{transform:translateY(2px) rotate(225deg)}
+.book-picker{margin-top:12px;background:#fbf9ef;padding:18px 20px;border:1px solid #8d9984;border-radius:5px}
+.book-picker label{font-weight:bold;margin-bottom:7px}.book-count{margin:10px 0 5px;color:#41523c;font-size:.9rem}
+.book-picker ul{list-style:none;margin:0;padding:0;max-height:15rem;overflow:auto;scroll-padding:6px}
+.book-picker a{display:block;padding:8px 7px;min-height:44px;text-decoration:underline;text-underline-offset:4px}
+.book-picker a:hover{background:#e4ead8}.book-picker a:focus-visible{outline-offset:-3px}
+@media(max-width:800px){.book-copy{width:53%}.book-copy h1{font-size:clamp(4.8rem,10vw,6rem)}}
+@media(max-width:600px){.wildlife-book main{padding:0 0 14px}.book-cover{min-height:0;padding-bottom:0;display:flex;flex-direction:column;align-items:stretch}.book-copy{order:-1;margin:0;padding:24px 6% 16px;width:100%}.book-copy h1{font-size:clamp(4rem,16vw,5.8rem);margin:26px 0}.book-cover::before{display:none}.book-art{position:static;min-height:270px;height:38vh;max-height:380px;background-position:75% 54%;mask-image:linear-gradient(180deg,transparent,#000 14%)}.book-finder{width:100%}}
+html[data-contrast=high] .book-copy,html[data-contrast=high] .book-picker{background:white}
+html[data-contrast=high] .book-finder summary{background:#000;color:#fff!important}
+html[data-contrast=high] .book-copy h1,html[data-contrast=high] .book-copy em{color:#000}
+html.simple-headings .book-copy h1{font-family:Arial,sans-serif}
+
+.book-finder{width:min(100%,465px)}
+.book-picker ul{max-height:clamp(19rem,48vh,32rem);scrollbar-gutter:stable}
+.book-picker li+li{border-top:1px solid #ccd1be}
+.book-picker li a{display:grid;grid-template-columns:5.5rem minmax(0,1fr);align-items:center;gap:1rem;padding:.65rem .35rem;text-decoration:none}
+.book-picker li img{width:5.5rem;height:5.5rem;object-fit:contain;border-radius:8px;background:#f5f1e5}
+.group-text strong,.group-text small{display:block;overflow-wrap:anywhere}
+.group-text strong{font:normal 1.22rem/1.24 Georgia,serif;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
+.group-text small{margin-top:.38rem;font:normal .92rem/1.45 Arial,sans-serif;color:#40523d}
+html.simple-headings .group-text strong{font-family:Arial,sans-serif}
+@media(max-width:440px){.book-picker{padding:14px}.book-picker li a{grid-template-columns:4.5rem minmax(0,1fr);gap:.75rem}.book-picker li img{width:4.5rem;height:4.5rem}}
+.wildlife-book{--cover:var(--paper)}
+.wildlife-book .book-cover{border:0}
+.book-cover::after{content:"";position:absolute;inset:auto 0 -1px;height:36px;background:var(--paper);clip-path:polygon(0 42%,8% 28%,24% 71%,36% 83%,50% 51%,69% 87%,83% 61%,100% 32%,100% 100%,0 100%);pointer-events:none}
+.wildlife-book .book-finder summary{border-radius:32px}

@@ -1,0 +1,176 @@
+/* Messages du formulaire du journal (absents du prototype). Contrastes ≥ 4.5:1 sur le fond papier. */
+
+.error-summary {
+  border: 3px solid #983a1e;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  background: #fff;
+  max-width: 44rem;
+}
+.error-summary:focus {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+.error-summary h2 {
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem;
+}
+.error-summary ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+.error-summary a {
+  color: #7a2c14;
+  font-weight: 600;
+}
+
+.field-error {
+  color: #7a2c14;
+  font-weight: 600;
+  margin: 0.2rem 0 0.4rem;
+}
+.field-error::before {
+  content: 'Error: ';
+}
+
+.field-hint {
+  color: var(--muted);
+  margin: 0 0 0.4rem;
+}
+
+.success-message {
+  border-left: 5px solid #2f6b3f;
+  padding: 0.6rem 1rem;
+  background: #e3eadb;
+  font-weight: 600;
+}
+
+.journal-masthead + .journal-filters,
+.community-page nav[aria-label='Journal pages'] {
+  margin-block: 1.5rem;
+}
+
+/* --- Comptes, SAV et administration ------------------------------------- */
+
+.account-form {
+  max-width: 40rem;
+}
+.account-form form {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 1.5rem;
+}
+.account-form form > button {
+  justify-self: start;
+  margin-top: 1rem;
+}
+.account-details {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.4rem 1.5rem;
+}
+.account-details dt {
+  font-weight: 600;
+}
+.account-details dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.request-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+.request-list > li {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+}
+.request-list h2,
+.request-list h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.25rem;
+}
+.request-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.admin-layout {
+  width: min(92%, 1180px);
+  margin: 2rem auto 4rem;
+  display: grid;
+  grid-template-columns: minmax(11rem, 14rem) 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+.admin-nav {
+  display: grid;
+  gap: 0.25rem;
+}
+.admin-nav a {
+  padding: 0.6rem 0.8rem;
+  min-height: 44px;
+  border-radius: 6px;
+  color: var(--ink);
+}
+.admin-nav a[aria-current='page'] {
+  background: #e3eadb;
+  font-weight: 600;
+}
+.admin-content {
+  min-width: 0;
+}
+@media (max-width: 760px) {
+  .admin-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.admin-cards {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 1rem;
+}
+.admin-cards > li {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+}
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 0.6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.admin-table td button {
+  margin: 0.15rem 0.3rem 0.15rem 0;
+}
+@media (max-width: 760px) {
+  .admin-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .admin-table tr {
+    display: grid;
+    border-bottom: 1px solid var(--line);
+    padding: 0.5rem 0;
+  }
+  .admin-table th,
+  .admin-table td {
+    border: 0;
+    padding: 0.2rem 0;
+  }
+}
