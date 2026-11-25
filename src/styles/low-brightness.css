@@ -1,0 +1,60 @@
+/*
+ * Luminance basse (préférence « Low brightness »).
+ * Les feuilles du prototype contiennent des centaines de couleurs écrites en dur : plutôt que de les
+ * redéfinir une par une, on inverse les couleurs de la page entière, adoucies (pas de noir pur ni de blanc pur),
+ * puis on ré-inverse ce qui doit garder ses vraies couleurs : photos, illustrations, vidéos et les zones
+ * déjà sombres conçues avec du texte clair (pied de page, héros de l'accueil, vignettes photo).
+ *
+ * invert(0.92) + hue-rotate(180deg) : les teintes restent les mêmes (le vert reste vert), seule la clarté
+ * s'inverse. Fond ≈ #1d1f1a, texte ≈ #d8dccf : contraste supérieur à 4,5:1, sans éblouir.
+ */
+/*
+ * Le filtre est posé sur chaque grande zone (en-tête, contenu, pied de page, barre de lecture, boîte de dialogue)
+ * et pas sur <html> : un filtre sur un ancêtre casse position: fixed (la barre de lecture ne serait plus visible).
+ * #app est en display: contents, ses enfants sont donc ces zones.
+ */
+html[data-contrast='low'],
+html[data-contrast='low'] body {
+  /* Fond hors des zones filtrées : la couleur que donne l'inversion du papier */
+  background: #1f1d18;
+}
+html[data-contrast='low'] #app > *,
+html[data-contrast='low'] dialog {
+  filter: invert(0.92) hue-rotate(180deg);
+}
+
+/* Médias et zones dont les couleurs d'origine doivent être conservées : on annule le filtre. */
+html[data-contrast='low'] img,
+html[data-contrast='low'] video,
+html[data-contrast='low'] picture,
+html[data-contrast='low'] canvas,
+html[data-contrast='low'] iframe,
+html[data-contrast='low'] .book-art,
+html[data-contrast='low'] .category-photo,
+html[data-contrast='low'] .preview-photo,
+html[data-contrast='low'] .photo-art,
+html[data-contrast='low'] .placeholder,
+html[data-contrast='low'] .nature-hero,
+html[data-contrast='low'] .photo-category,
+html[data-contrast='low'] .story-landscape,
+html[data-contrast='low'] .site-footer {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Pas de double inversion : un média placé dans une zone déjà ré-inversée garde ses couleurs. */
+html[data-contrast='low'] :is(.nature-hero, .photo-category, .story-landscape, .site-footer)
+  :is(img, video, picture, canvas, iframe) {
+  filter: none;
+}
+
+html[data-contrast='low'] dialog::backdrop {
+  background: #000000b8;
+}
+
+@media (forced-colors: active) {
+  /* Les couleurs forcées du système ont la priorité : pas de filtre. */
+  html[data-contrast='low'] #app > *,
+  html[data-contrast='low'] * {
+    filter: none !important;
+  }
+}

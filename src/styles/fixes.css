@@ -1,0 +1,96 @@
+/*
+ * Corrections apportées au CSS du prototype.
+ * Chaque règle indique le problème corrigé.
+ */
+
+/*
+ * Accueil : débordement horizontal entre ~700 et ~1150 px (WCAG 1.4.10 Reflow).
+ * aspect-ratio + min-height:210px imposait aussi une largeur minimale d'environ 214 px par tuile,
+ * donc 5 tuiles ne tenaient plus. On laisse la grille choisir le nombre de colonnes.
+ */
+.photo-category {
+  min-width: 0;
+}
+.photo-categories {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+}
+
+
+/*
+ * Liens dans le texte : le prototype retire le soulignement de tous les liens (a { text-decoration: none }),
+ * ils ne se distinguaient plus du texte (WCAG 1.4.1 Use of Color).
+ * :where() garde une spécificité minimale : les liens stylés par une classe (boutons, cartes) ne changent pas.
+ * RouterLink ajoute router-link-active sur le lien de la page courante : ces liens restent concernés.
+ */
+:where(main, footer) a:where(:not([class]), [class=''], [class^='router-link']) {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+:where(main, footer) a:where(:not([class]), [class=''], [class^='router-link']):hover {
+  text-decoration-thickness: max(2px, 0.12em);
+}
+
+/*
+ * Fil d'Ariane : les liens ont une zone de clic agrandie (padding vertical), pas les séparateurs.
+ * Avec l'alignement par défaut, « Home » tombait plus bas que « / » et que la page courante.
+ */
+.breadcrumb {
+  align-items: baseline;
+  flex-wrap: wrap;
+  row-gap: 0;
+}
+
+/*
+ * Le prototype stylise les balises header et nav elles-mêmes (prévu pour l'en-tête du site) :
+ * flex, gap 32px, padding sur les liens, défilement horizontal sur mobile…
+ * Tout <nav>/<header> placé dans une page (fil d'Ariane, pages liées, pagination, admin) en héritait.
+ * :where() garde la spécificité d'un simple sélecteur de balise : les classes de chaque composant l'emportent.
+ */
+:where(main) nav,
+:where(main) header {
+  display: block;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  gap: normal;
+  border: 0;
+  background: none;
+  font-size: inherit;
+  order: 0;
+  flex: none;
+  overflow: visible;
+  white-space: normal;
+  justify-content: normal;
+}
+:where(main) nav a {
+  padding: 0;
+  border-bottom: 0;
+  font-size: inherit;
+}
+/* Zone de clic confortable sur les liens du fil d'Ariane (WCAG 2.5.8) */
+.breadcrumb a {
+  padding-block: 0.4rem;
+}
+
+/*
+ * Accueil : image du bandeau floue et déformée.
+ * Le prototype affichait une case d'une planche de 6 images (nature-atlas.webp, 1774×887)
+ * avec background-size: 300% 200% : la case de 591×443 px était étirée sur toute la largeur,
+ * avec un facteur différent en largeur et en hauteur (déformation) et jusqu'à ×3 (flou).
+ * On utilise la case seule, mise à l'échelle proportionnellement (cover).
+ * Pour une image nette, remplacer /assets/hero/heron.webp par une photo d'au moins 2400 px de large.
+ */
+.nature-hero {
+  background-image: linear-gradient(90deg, #132616b3, transparent 80%), url('/assets/hero/heron.webp');
+  background-size: 100% 100%, cover;
+  background-position: center, 80% 40%;
+  background-repeat: no-repeat;
+}
+/* Petits écrans : le texte couvre toute la largeur, y compris le héron (clair) → voile sombre uniforme (contraste WCAG 1.4.3). */
+@media (max-width: 700px) {
+  .nature-hero {
+    background-image: linear-gradient(#132616d9, #132616a6), url('/assets/hero/heron.webp');
+    background-position: center, 85% 40%;
+  }
+}

@@ -1,0 +1,783 @@
+/* Pages de contenu : groupes, fiches espèces, lieux, pages d'information. */
+
+/* Colonne principale alignée sur les gabarits du prototype (.specimen-sheet, .access-information…) */
+.page-column {
+  width: min(90%, 1450px);
+  margin: 2rem auto;
+}
+.page-column > h2 {
+  font: normal clamp(1.8rem, 3vw, 2.4rem) / 1.1 Georgia, serif;
+  color: #233f31;
+  margin: 0 0 1rem;
+}
+
+.content-pending {
+  box-sizing: border-box;
+  /* Même colonne que le reste de la page (.place-template, .access-information…) */
+  width: min(90%, 1450px);
+  margin: 1.5rem auto;
+  border-left: 5px solid var(--muted);
+  background: #fff;
+  padding: 0.9rem 1.2rem;
+}
+/* Dans une colonne de texte, il en prend simplement la largeur */
+.page-column .content-pending,
+.utility-content .content-pending,
+.info-body .content-pending {
+  width: auto;
+  margin: 1rem 0;
+}
+.content-pending p {
+  margin: 0.3rem 0;
+  max-width: 48rem;
+}
+
+.content-photo {
+  margin: 0;
+}
+.content-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+.content-photo figcaption {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+.photo-credit {
+  display: block;
+  font-size: 0.85rem;
+}
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+  gap: 1rem;
+}
+
+.species-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: 0.6rem;
+}
+.species-list a {
+  display: grid;
+  gap: 0.15rem;
+  min-height: 44px;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--ink);
+}
+.species-list a:hover .species-name,
+.species-list a:focus-visible .species-name {
+  text-decoration: underline;
+}
+.species-name {
+  font-weight: 600;
+}
+.species-filter {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 28rem;
+  margin-bottom: 1rem;
+}
+
+/* Tableaux larges : défilement horizontal dans leur cadre, jamais de la page (WCAG 1.4.10). */
+.table-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}
+.table-scroll:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.definitions {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.4rem 1.2rem;
+}
+.definitions dt {
+  font-weight: 600;
+}
+.definitions dd {
+  margin: 0;
+}
+
+.place-pager {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(90%, 1180px);
+  margin: 2rem auto;
+}
+.place-pager a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* --- About the Website ----------------------------------------------------- */
+
+/* En-tête : le gabarit du prototype (titre sur fond vert pâle + texte), mais avec un texte court */
+.about-hero .archive-prose p {
+  margin-bottom: 1rem;
+}
+.about-hero .about-lede {
+  font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+  color: var(--muted);
+}
+
+.about-archive {
+  width: min(90%, 1450px);
+  margin: 0 auto 4rem;
+}
+.about-themes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: 1.5rem;
+}
+.about-theme {
+  background: #fbfaf4;
+  border: 1px solid var(--line);
+  border-radius: 3px 28px 3px 3px;
+  padding: 1.6rem 1.6rem 1rem;
+}
+.about-theme h3 {
+  font: normal 1.75rem/1.15 Georgia, serif;
+  letter-spacing: -0.02em;
+  color: #233f31;
+  margin: 0.2rem 0 1rem;
+}
+.about-theme ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.about-theme li + li {
+  border-top: 1px solid #dfe3d6;
+}
+.about-link {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.85rem 0;
+  min-height: 44px;
+  text-decoration: none;
+  color: inherit;
+}
+.about-link-title {
+  font-weight: 600;
+  color: #3e5934;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+.about-link:hover .about-link-title,
+.about-link:focus-visible .about-link-title {
+  text-decoration-thickness: 2px;
+}
+.about-link-summary {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+/* --- Pages d'information -------------------------------------------------- */
+
+.info-hero {
+  width: min(90%, 1180px);
+  margin: 2rem auto 2.5rem;
+  background: #e9ecdc;
+  border-radius: 3px 45px 3px 3px;
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+}
+.info-hero h1 {
+  font: normal clamp(2.6rem, 5vw, 4.6rem) / 1 Georgia, serif;
+  letter-spacing: -0.045em;
+  color: #233f31;
+  margin: 0.3rem 0 1rem;
+  overflow-wrap: anywhere;
+}
+.info-summary {
+  font: normal clamp(1.15rem, 1.6vw, 1.45rem) / 1.5 Georgia, serif;
+  max-width: 42rem;
+  margin: 0;
+}
+
+.info-layout {
+  width: min(90%, 1180px);
+  margin: 0 auto 3rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: start;
+}
+@media (max-width: 800px) {
+  .info-layout {
+    /* minmax(0, …) : un tableau large défile dans son cadre au lieu d'élargir la page */
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.info-body {
+  max-width: 44rem;
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+.info-body .content-pending {
+  margin: 0;
+}
+.info-section + .info-section {
+  margin-top: 2rem;
+}
+.info-section h2 {
+  font: normal 1.8rem/1.2 Georgia, serif;
+  color: #233f31;
+}
+
+.related-pages {
+  border-left: 3px solid #e9ecdc;
+  padding-left: 1.2rem;
+}
+.related-pages h2 {
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.6rem;
+}
+.related-pages ul {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+.related-pages li a {
+  display: inline-block;
+  padding: 0.45rem 0;
+}
+.related-all {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+/* --- Pages d'entrée Wildlife / Places (ExploreCover) ---------------------- */
+/* Élément sans vignette (ex. lieux) : le texte occupe toute la ligne. */
+.book-picker li.no-thumb a {
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 44px;
+}
+
+/* --- Contenu migré (ArchiveBlocks) --------------------------------------- */
+
+/* Mise en page : texte + sommaire collant à droite quand il y a la place */
+.archive-wrap {
+  container-type: inline-size;
+}
+@container (min-width: 60rem) {
+  .archive-layout.has-aside {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 17rem;
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: start;
+  }
+  .archive-layout.has-aside .archive-aside {
+    order: 2;
+    position: sticky;
+    top: 1.5rem;
+    max-height: calc(100vh - 3rem);
+    overflow: auto;
+  }
+  /* Sans colonne latérale : la colonne de lecture est centrée, pas collée à gauche. */
+  .archive-layout:not(.has-aside) .archive-blocks {
+    margin-inline: auto;
+  }
+}
+.archive-aside {
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.archive-toc {
+  background: #fbfaf4;
+  border: 1px solid var(--line);
+  border-radius: 3px 22px 3px 3px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 2rem;
+}
+.archive-toc h2 {
+  font: 600 0.8rem/1.2 Arial, sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.6rem;
+}
+.archive-toc ol {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.15rem;
+}
+.archive-toc a {
+  display: inline-block;
+  padding: 0.25rem 0;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+/* Lecture : colonne de 68 caractères, interlignage généreux */
+/* Lecture allégée : colonne de 64 caractères, gris-vert plutôt que noir, paragraphes bien séparés */
+.archive-blocks {
+  max-width: 64ch;
+  font: normal 1.08rem/1.8 Georgia, 'Times New Roman', serif;
+  color: #33423a;
+}
+.archive-blocks p,
+.archive-list {
+  margin: 0 0 1.45em;
+}
+/* Le prototype fixe « p, li, dt, dd { font-size: 1rem } » : ici, la taille de lecture de la colonne. */
+.archive-blocks :is(p, li) {
+  font-size: inherit;
+}
+.archive-blocks .archive-lead {
+  font-size: 1.32rem;
+  line-height: 1.55;
+  color: #233f31;
+  padding-left: 1.1rem;
+  border-left: 4px solid #a9b99a;
+  margin-bottom: 1.8em;
+}
+.archive-blocks h2,
+.archive-blocks h3,
+.archive-blocks h4 {
+  color: #233f31;
+  scroll-margin-top: 1rem;
+}
+.archive-blocks h2 {
+  font: normal clamp(1.6rem, 2.4vw, 2rem) / 1.2 Georgia, serif;
+  margin: 2.6rem 0 0.8rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+}
+.archive-blocks h3 {
+  font: normal 1.4rem/1.25 Georgia, serif;
+  margin: 2rem 0 0.5rem;
+}
+.archive-blocks h4 {
+  font: 600 1.05rem/1.3 Arial, sans-serif;
+  margin: 1.5rem 0 0.4rem;
+}
+.archive-blocks a {
+  color: #3e5934;
+}
+.archive-list {
+  padding-left: 1.3rem;
+}
+.archive-list li + li {
+  margin-top: 0.25em;
+}
+.archive-list li::marker {
+  color: #7d9070;
+}
+
+/* Photos */
+.archive-figure {
+  margin: 1.8rem 0;
+}
+.archive-figure img,
+.archive-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  background: #e9ecdc;
+}
+.archive-figure figcaption,
+.archive-gallery figcaption {
+  font: normal 0.9rem/1.45 Arial, sans-serif;
+  color: var(--muted);
+  margin-top: 0.45rem;
+}
+@container (min-width: 44rem) {
+  /* Photo isolée suivie de texte : à droite, le texte l'entoure */
+  .archive-figure.is-side {
+    float: right;
+    /* Une photo flottante ne se place jamais à côté d'une autre : elle passe dessous */
+    clear: right;
+    width: min(45%, 22rem);
+    margin: 0.3rem 0 1rem 1.6rem;
+  }
+  .archive-blocks h2,
+  .archive-blocks h3 {
+    clear: both;
+  }
+}
+.archive-gallery {
+  list-style: none;
+  padding: 0;
+  /* Respiration nette avec les paragraphes autour */
+  margin: 2.2rem 0 2.4rem;
+  display: grid;
+  /* auto-fit : 2 photos se partagent toute la largeur au lieu de laisser une colonne vide */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 1.2rem;
+  clear: both;
+}
+/* Une photo seule entre deux paragraphes : centrée, sans dépasser sa taille d'origine */
+.archive-figure:not(.is-side) {
+  margin: 2.2rem auto 2.4rem;
+  max-width: 36rem;
+}
+.archive-gallery figure {
+  margin: 0;
+}
+.archive-gallery img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* Tableaux */
+.data-table {
+  margin: 1.8rem 0;
+  clear: both;
+  font: normal 0.95rem/1.45 Arial, sans-serif;
+}
+.data-table-tools {
+  display: grid;
+  gap: 0.3rem;
+  max-width: 26rem;
+  margin-bottom: 0.8rem;
+}
+.data-table-tools label {
+  font-weight: 600;
+}
+.data-table-tools p {
+  margin: 0;
+  color: var(--muted);
+}
+.data-table .table-scroll {
+  max-height: 32rem;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.data-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.data-table th,
+.data-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.45rem 0.7rem;
+  border-bottom: 1px solid #dfe3d6;
+}
+.data-table thead th {
+  position: sticky;
+  top: 0;
+  background: #e9ecdc;
+  color: #233f31;
+  z-index: 1;
+}
+.data-table tbody tr:nth-child(even) {
+  background: #f8f6ee;
+}
+
+.archive-blocks .archive-source {
+  clear: both;
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font: normal 0.95rem/1.5 Arial, sans-serif;
+  color: var(--muted);
+}
+html[data-contrast='high'] .archive-blocks,
+html[data-contrast='high'] .archive-blocks a,
+html[data-contrast='high'] .data-table thead th {
+  color: #000;
+}
+html.simple-headings .archive-blocks :is(h2, h3) {
+  font-family: Arial, sans-serif;
+}
+.archive-section + .archive-section {
+  margin-top: 2rem;
+}
+
+/* --- News et « More about … » -------------------------------------------- */
+.more-about {
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+}
+
+/*
+ * Le prototype stylise toutes les balises figure (arche de 495 px de haut, image étirée,
+ * légende en bandeau sombre de 10 px) pour l'illustration des pages groupe.
+ * Les photos du contenu sont des photos normales : on annule ces règles pour elles seulement.
+ */
+:is(.archive-figure, .archive-gallery figure, .content-photo) {
+  position: static;
+  height: auto;
+  overflow: visible;
+  border-radius: 0;
+  background: none;
+}
+:is(.archive-figure, .archive-gallery figure, .content-photo) img {
+  height: auto;
+  transform: none;
+}
+:is(.archive-figure, .archive-gallery figure, .content-photo) figcaption {
+  position: static;
+  display: block;
+  padding: 0;
+  background: none;
+  color: var(--muted);
+  font: normal 0.9rem/1.45 Arial, sans-serif;
+  letter-spacing: normal;
+}
+
+/* --- Cartes d'articles (News) ------------------------------------------- */
+.card-grid {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: 1.5rem;
+}
+.card-grid > li {
+  display: flex;
+}
+.article-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #fbfaf4;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.article-card:hover,
+.article-card:focus-within {
+  box-shadow: 0 6px 18px #23413126;
+  transform: translateY(-2px);
+}
+html.reduce-motion .article-card {
+  transition: none;
+  transform: none;
+}
+.article-card-media {
+  aspect-ratio: 16 / 10;
+  background: #e9ecdc;
+  overflow: hidden;
+}
+.article-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Illustration de remplacement : image entière sur fond clair, pas recadrée */
+.article-card-media.is-illustration img {
+  object-fit: contain;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.article-card-body {
+  padding: 1rem 1.15rem 1.25rem;
+  display: grid;
+  gap: 0.5rem;
+}
+.article-card-kicker {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a3b12;
+}
+.article-card-title {
+  font: normal 1.3rem/1.25 Georgia, serif;
+  margin: 0;
+  color: #233f31;
+}
+.article-card-title a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+/* Toute la carte est cliquable via le lien du titre (un seul lien, une seule tabulation). */
+.article-card-title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.article-card-title a:focus-visible {
+  outline: none;
+}
+.article-card:focus-within {
+  outline: 3px solid #233f31;
+  outline-offset: 2px;
+}
+.article-card .article-card-excerpt {
+  margin: 0;
+  font: normal 0.98rem/1.5 Arial, sans-serif;
+  color: #3f4f44;
+}
+
+/* --- En-tête d'article (pages migrées) ------------------------------------- */
+.article-hero {
+  width: min(90%, 1450px);
+  margin: 1.5rem auto 2.5rem;
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+  background: #e9ecdc;
+  border-radius: 3px 45px 3px 3px;
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+@media (min-width: 900px) {
+  .article-hero.has-cover {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  }
+}
+.article-hero h1 {
+  font: normal clamp(2.3rem, 4.6vw, 4.2rem) / 1.02 Georgia, serif;
+  letter-spacing: -0.04em;
+  color: #233f31;
+  margin: 0.4rem 0 1rem;
+  overflow-wrap: anywhere;
+}
+.article-hero .article-meta {
+  margin: 0;
+  font: normal 0.95rem/1.4 Arial, sans-serif;
+  color: var(--muted);
+}
+.article-hero .article-meta span {
+  margin: 0 0.35rem;
+}
+.article-hero-media {
+  margin: 0;
+  position: static;
+  height: auto;
+  overflow: visible;
+  border-radius: 0;
+  background: none;
+}
+.article-hero-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 22rem;
+  object-fit: cover;
+  border-radius: 6px;
+  transform: none;
+  box-shadow: 0 10px 30px #23413122;
+}
+.article-hero-media.is-illustration img {
+  object-fit: contain;
+  box-shadow: none;
+  background: #f5f3ea;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.article-hero-media figcaption {
+  position: static;
+  display: block;
+  padding: 0;
+  margin-top: 0.5rem;
+  background: none;
+  color: var(--muted);
+  font: normal 0.88rem/1.4 Arial, sans-serif;
+  letter-spacing: normal;
+}
+
+/* --- Colonne latérale ----------------------------------------------------- */
+.aside-card {
+  background: #fbfaf4;
+  border: 1px solid var(--line);
+  border-radius: 3px 22px 3px 3px;
+  padding: 1rem 1.2rem;
+  font: normal 0.95rem/1.45 Arial, sans-serif;
+}
+.aside-card h2 {
+  font: 600 0.8rem/1.2 Arial, sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.7rem;
+}
+.aside-card dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.35rem 0.9rem;
+  margin: 0;
+}
+.aside-card dt {
+  color: var(--muted);
+}
+.aside-card dd {
+  margin: 0;
+}
+.aside-card ul {
+  list-style: none;
+  margin: 0 0 0.8rem;
+  padding: 0;
+  display: grid;
+  gap: 0.15rem;
+}
+.aside-card li a {
+  display: inline-block;
+  padding: 0.3rem 0;
+}
+.aside-card li + li {
+  border-top: 1px solid #e4e7da;
+}
+.aside-all {
+  font-weight: 600;
+}
+
+/* Page article : en-tête, texte et colonne latérale sur une même largeur centrée (pas de vide à droite) */
+.article-width {
+  width: min(90%, 74rem);
+  margin-inline: auto;
+}
+.article-width .archive-blocks {
+  max-width: 70ch;
+  font-size: 1.12rem;
+}
+
+/* Photo introuvable retirée (ArchiveBlocks) : rien ne doit la réafficher */
+.archive-blocks [hidden] {
+  display: none !important;
+}
+
+/* Article officiel (API) */
+.article-standfirst {
+  max-width: 44rem;
+  margin: 1rem 0 0;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.draft-notice {
+  padding: 0.75rem 1rem;
+  background: #fff3ed;
+  border-left: 4px solid #983a1e;
+  font-weight: 600;
+}
+.admin-shortcut a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
