@@ -13,6 +13,10 @@ describe('cleanPreferences', () => {
     expect(cleanPreferences(prefs)).toEqual(prefs)
   })
 
+  it('accepts the low-brightness mode', () => {
+    expect(cleanPreferences({ contrast: 'low' }).contrast).toBe('low')
+  })
+
   it('accepts the scale as a string (form values)', () => {
     expect(cleanPreferences({ scale: '115' }).scale).toBe(115)
   })

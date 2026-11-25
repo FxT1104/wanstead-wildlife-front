@@ -10,6 +10,8 @@
 @import './community.css';
 @import './content.css';
 @import './fixes.css';
+@import './low-brightness.css';
+@import './read-aloud.css';
 
 /* #app ne doit pas casser la mise en page pensée pour header/main/footer enfants de body */
 #app {

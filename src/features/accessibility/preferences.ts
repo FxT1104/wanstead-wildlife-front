@@ -5,7 +5,8 @@
  */
 
 export type TextScale = 100 | 115 | 130
-export type Contrast = 'standard' | 'high'
+/** low : luminance basse (fond sombre, texte clair adouci) pour les personnes gênées par les fonds lumineux */
+export type Contrast = 'standard' | 'high' | 'low'
 export type Palette = 'natural' | 'neutral'
 
 export interface ReadingPreferences {
@@ -37,7 +38,7 @@ export function cleanPreferences(value: unknown): ReadingPreferences {
   const scale = Number(v.scale)
   return {
     scale: (SCALES as readonly number[]).includes(scale) ? (scale as TextScale) : 100,
-    contrast: v.contrast === 'high' ? 'high' : 'standard',
+    contrast: v.contrast === 'high' || v.contrast === 'low' ? v.contrast : 'standard',
     colours: v.colours === 'neutral' ? 'neutral' : 'natural',
     spacing: v.spacing === true,
     font: v.font === true,

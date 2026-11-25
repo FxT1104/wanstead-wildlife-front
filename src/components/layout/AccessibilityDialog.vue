@@ -54,7 +54,7 @@ defineExpose({ open, close })
 
       <div class="form-columns">
         <label>
-          Contrast
+          Contrast and brightness
           <select
             name="contrast"
             :value="preferences.contrast"
@@ -62,6 +62,7 @@ defineExpose({ open, close })
           >
             <option value="standard">Standard</option>
             <option value="high">High contrast</option>
+            <option value="low">Low brightness (dark background)</option>
           </select>
         </label>
         <label>

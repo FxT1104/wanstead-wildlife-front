@@ -2,6 +2,7 @@
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import { useAuth } from '@/features/auth/useAuth'
+import { useReadAloud } from '@/features/accessibility/useReadAloud'
 
 const emit = defineEmits<{ openAccessibility: [] }>()
 
@@ -18,6 +19,8 @@ const menuOpen = ref(false)
 const menuButton = ref<HTMLButtonElement | null>(null)
 const route = useRoute()
 const { isAuthenticated, isAdmin } = useAuth()
+const reader = useReadAloud()
+const listening = () => reader.state.value !== 'idle'
 
 // Le CSS du prototype s'appuie sur body.menu-open.
 watch(menuOpen, (open) => document.body.classList.toggle('menu-open', open))
@@ -65,6 +68,21 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
       <RouterLink v-if="isAdmin" to="/admin" class="tool-link">Admin</RouterLink>
       <RouterLink v-if="isAuthenticated" to="/account" class="tool-link">My account</RouterLink>
       <RouterLink v-else :to="{ name: 'login' }" class="tool-link">Sign in</RouterLink>
+      <!-- Lecture à voix haute (synthèse vocale du navigateur) ; absent si le navigateur ne la propose pas -->
+      <button
+        v-if="reader.supported"
+        id="listen-button"
+        type="button"
+        class="listen-button"
+        :aria-pressed="listening()"
+        @click="listening() ? reader.stop() : reader.start()"
+      >
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+          <path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor" />
+          <path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        Listen
+      </button>
       <button type="button" aria-haspopup="dialog" @click="emit('openAccessibility')">Accessibility</button>
     </div>
   </header>
